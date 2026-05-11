@@ -1,1 +1,858 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arnaud Mary — Chef privé & consultant culinaire international</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D898;
+    --gold-dark: #8B6914;
+    --charcoal: #1A1A18;
+    --charcoal-mid: #2D2D2A;
+    --off-white: #F8F5EF;
+    --warm-gray: #E8E4DC;
+    --text-muted: #7A7060;
+    --accent-red: #8B2A1A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--charcoal);
+    color: var(--off-white);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(26,26,24,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.78rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--off-white); opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 60px;
+  }
+  .hero-left {
+    background: var(--charcoal-mid);
+    padding: 5rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.1;
+    color: var(--off-white);
+    margin-bottom: 0.5rem;
+  }
+  .hero-name em {
+    display: block; font-style: italic; color: var(--gold);
+  }
+  .hero-title {
+    font-size: 1rem; color: var(--text-muted); margin: 1.5rem 0 2.5rem;
+    font-weight: 300; line-height: 1.8;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.2rem;
+  }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-bottom: 3rem;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; color: var(--gold); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--text-muted); margin-top: 0.3rem;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    background: var(--gold);
+    color: var(--charcoal);
+    padding: 0.9rem 2rem;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s;
+    width: fit-content;
+  }
+  .hero-cta:hover { background: var(--gold-light); }
+  .hero-right {
+    position: relative; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+    gap: 3px;
+  }
+  .hero-img {
+    overflow: hidden; position: relative;
+  }
+  .hero-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+  .hero-img:hover img { transform: scale(1.04); }
+  .hero-img:first-child {
+    grid-column: 1 / 3; height: 55%;
+  }
+  .hero-img:nth-child(2), .hero-img:nth-child(3) { height: 100%; }
+  .hero-overlay-tag {
+    position: absolute; bottom: 1rem; right: 1rem;
+    background: rgba(26,26,24,0.85);
+    color: var(--gold); font-size: 0.68rem; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 0.4rem 0.8rem;
+  }
+
+  /* SECTION BASE */
+  section { padding: 6rem 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--off-white); margin-bottom: 1.5rem; line-height: 1.2;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .divider {
+    width: 48px; height: 2px;
+    background: var(--gold); margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  .about { background: var(--charcoal-mid); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start;
+  }
+  .about-photo {
+    position: relative;
+  }
+  .about-photo img {
+    width: 100%; display: block;
+    filter: grayscale(20%);
+  }
+  .about-photo::after {
+    content: '';
+    position: absolute; bottom: -12px; right: -12px;
+    width: 60%; height: 60%;
+    border: 2px solid var(--gold);
+    z-index: -1;
+  }
+  .about-text p {
+    color: #C8C0B0; font-size: 1rem; line-height: 1.9;
+    margin-bottom: 1.5rem; font-weight: 300;
+  }
+  .about-text strong { color: var(--gold-light); font-weight: 500; }
+  .ref-line {
+    margin-top: 2rem; padding: 1.2rem 1.5rem;
+    border-left: 3px solid var(--gold);
+    background: rgba(201,168,76,0.05);
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1.1rem;
+    color: var(--gold-light);
+  }
+
+  /* EXPERTISE */
+  .expertise { background: var(--charcoal); }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+    margin-top: 3rem;
+  }
+  .skill-card {
+    background: var(--charcoal-mid);
+    padding: 2rem 1.8rem;
+    position: relative; overflow: hidden;
+    transition: background 0.2s;
+  }
+  .skill-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold); transform: scaleX(0);
+    transform-origin: left; transition: transform 0.3s;
+  }
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-card:hover { background: #252520; }
+  .skill-icon {
+    font-size: 1.8rem; margin-bottom: 1rem;
+    filter: grayscale(0);
+  }
+  .skill-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; color: var(--off-white);
+    margin-bottom: 0.6rem;
+  }
+  .skill-desc {
+    font-size: 0.85rem; color: var(--text-muted); line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* PARCOURS */
+  .parcours { background: var(--charcoal-mid); }
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+    border-left: 1px solid rgba(201,168,76,0.3);
+    margin-top: 3rem;
+  }
+  .timeline-item {
+    margin-bottom: 3rem; position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -2.84rem; top: 0.4rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px var(--charcoal-mid), 0 0 0 4px var(--gold);
+  }
+  .timeline-period {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.4rem;
+  }
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; color: var(--off-white); margin-bottom: 0.2rem;
+  }
+  .timeline-org {
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem;
+    font-style: italic;
+  }
+  .timeline-desc {
+    font-size: 0.88rem; color: #A09880; line-height: 1.8; font-weight: 300;
+  }
+  .timeline-desc ul { list-style: none; }
+  .timeline-desc ul li::before {
+    content: '—'; color: var(--gold); margin-right: 0.6rem;
+  }
+  .highlight-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    font-size: 0.72rem; letter-spacing: 0.08em;
+    padding: 0.25rem 0.7rem; margin-bottom: 0.6rem;
+  }
+
+  /* GALERIE */
+  .galerie { background: var(--charcoal); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 220px 220px;
+    gap: 3px;
+    margin-top: 3rem;
+  }
+  .gallery-item {
+    overflow: hidden; position: relative;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+  .gallery-item:hover img { transform: scale(1.06); }
+  .gallery-item:nth-child(1) { grid-column: 1 / 3; }
+  .gallery-item:nth-child(4) { grid-column: 4 / 6; }
+  .gallery-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 0.8rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold-light); opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-item:hover .gallery-label { opacity: 1; }
+
+  /* SERVICES */
+  .services { background: var(--charcoal-mid); }
+  .services-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px;
+    margin-top: 3rem;
+  }
+  .service-card {
+    padding: 2.5rem 2.2rem;
+    background: var(--charcoal);
+    position: relative;
+  }
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; color: rgba(201,168,76,0.12);
+    position: absolute; top: 1.2rem; right: 1.5rem;
+    line-height: 1;
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+  .service-desc {
+    font-size: 0.88rem; color: #A09880; line-height: 1.9; font-weight: 300;
+  }
+  .service-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem;
+  }
+  .tag {
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--text-muted);
+  }
+
+  /* LANGUES & DISPO */
+  .infos { background: var(--charcoal); }
+  .infos-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem;
+    margin-top: 3rem;
+  }
+  .info-box {
+    padding: 2rem;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  .info-box-title {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .lang-item {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 0.8rem;
+  }
+  .lang-name { font-size: 0.9rem; color: var(--off-white); }
+  .lang-level {
+    font-size: 0.72rem; color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+  .lang-bar {
+    height: 2px; background: rgba(201,168,76,0.15);
+    margin-bottom: 1.2rem; position: relative;
+  }
+  .lang-bar-fill {
+    position: absolute; top: 0; left: 0; height: 100%;
+    background: var(--gold);
+  }
+  .interest-item {
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 1rem; font-size: 0.88rem; color: #A09880;
+  }
+  .interest-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+  .dispo-badge {
+    display: inline-block;
+    background: rgba(40,120,60,0.15);
+    border: 1px solid rgba(40,180,80,0.3);
+    color: #6BCB84;
+    font-size: 0.75rem; letter-spacing: 0.1em;
+    padding: 0.4rem 1rem; margin-bottom: 1rem;
+  }
+  .dispo-text {
+    font-size: 0.85rem; color: var(--text-muted); line-height: 1.8;
+  }
+
+  /* CONTACT */
+  .contact {
+    background: var(--charcoal-mid);
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+  .contact .section-label { text-align: center; }
+  .contact .section-title { text-align: center; }
+  .contact .divider { margin: 0 auto 3rem; }
+  .contact-info {
+    display: flex; justify-content: center; gap: 3rem;
+    flex-wrap: wrap; margin-bottom: 2.5rem;
+  }
+  .contact-item {
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  }
+  .contact-label {
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .contact-value {
+    font-size: 0.95rem; color: var(--off-white);
+  }
+  .contact-value a {
+    color: var(--gold); text-decoration: none;
+  }
+  .contact-cta {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 1rem 2.5rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.2s;
+    margin-top: 1rem;
+  }
+  .contact-cta:hover {
+    background: var(--gold); color: var(--charcoal);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #111110;
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 3rem 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: auto; }
+    .services-grid { grid-template-columns: 1fr; }
+    .infos-grid { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-logo">Arnaud Mary</div>
+  <ul class="nav-links">
+    <li><a href="#about">Profil</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Chef privé &amp; consultant culinaire international</p>
+    <h1 class="hero-name">
+      Arnaud<br>
+      <em>Mary</em>
+    </h1>
+    <p class="hero-title">
+      45 ans d'excellence gastronomique.<br>
+      De Joël Robuchon aux tables les plus privées du monde.
+    </p>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">45+</div>
+        <div class="stat-label">Ans d'expérience</div>
+      </div>
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">Continents</div>
+      </div>
+      <div>
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Ans chef privé</div>
+      </div>
+    </div>
+    <a href="#contact" class="hero-cta">Prendre contact →</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img">
+      <img src="images/plat1.jpg" alt="Gastronomie fine">
+      <div class="hero-overlay-tag">Gastronomie contemporaine</div>
+    </div>
+    <div class="hero-img">
+      <img src="images/portrait.jpg" alt="Chef Arnaud Mary">
+    </div>
+    <div class="hero-img">
+      <img src="images/plat2.jpg" alt="Dressage raffiné">
+    </div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo">
+        <!-- placeholder portrait — remplacer par photo Arnaud -->
+        <img src="images/portrait.jpg" alt="Chef Arnaud Mary">
+      </div>
+      <div class="about-text">
+        <p class="section-label">Qui suis-je</p>
+        <h2 class="section-title">Une carrière bâtie sur <em>l'excellence</em></h2>
+        <div class="divider"></div>
+        <p>Né à Cholet en 1965, j'ai consacré l'intégralité de ma vie professionnelle à la gastronomie française et internationale. Mon parcours, de la brigade de <strong>Joël Robuchon</strong> au poste de chef personnel de familles aristocratiques britanniques, en passant par les cuisines du groupe <strong>LVMH</strong>, m'a forgé une vision exigeante et sans compromis du métier.</p>
+        <p>Pendant quinze ans en Irlande, j'ai créé, dirigé et développé un restaurant reconnu et une boulangerie-pâtisserie artisanale. Aujourd'hui, je mets cette expérience unique au service de ceux qui recherchent <strong>qualité, confiance et savoir-faire</strong> pour leurs projets culinaires privés et professionnels.</p>
+        <p>Discrétion, rigueur et passion : ce sont les trois piliers de chacune de mes interventions, qu'il s'agisse d'un dîner intime, d'un événement d'entreprise ou d'un accompagnement à long terme.</p>
+        <div class="ref-line">
+          "Ancien collaborateur de Joël Robuchon et du groupe LVMH — Roland Garros, Christian Dior, Louis Vuitton, Céline."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="expertise" id="expertise">
+  <div class="container">
+    <p class="section-label">Savoir-faire</p>
+    <h2 class="section-title">Les piliers de mon <em>expertise</em></h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🍽️</div>
+        <div class="skill-name">Cuisine gastronomique</div>
+        <p class="skill-desc">Maîtrise de la haute cuisine française et contemporaine, création de menus personnalisés adaptés à chaque contexte et chaque client.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🏛️</div>
+        <div class="skill-name">Chef privé de prestige</div>
+        <p class="skill-desc">8 ans auprès d'une famille anglaise noble, en résidences entre l'Angleterre, l'Irlande, le sud de la France, les Caraïbes et les États-Unis.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📋</div>
+        <div class="skill-name">Consulting culinaire</div>
+        <p class="skill-desc">Accompagnement d'ouvertures de restaurants, création de cartes, repositionnement d'établissements. Missions à Moscou, Saint-Pétersbourg, New York.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎓</div>
+        <div class="skill-name">Formation &amp; transmission</div>
+        <p class="skill-desc">Formateur certifié depuis 2021 auprès de jeunes et d'adultes en reconversion, ateliers pratiques et accompagnement individualisé.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎉</div>
+        <div class="skill-name">Événementiel haut de gamme</div>
+        <p class="skill-desc">Organisation de repas privés d'exception, mariages, événements corporate. Expérience des exigences des grandes maisons et personnalités.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌍</div>
+        <div class="skill-name">Mobilité internationale</div>
+        <p class="skill-desc">Adaptabilité à tous les environnements et cuisines locales. Gestion des approvisionnements internationaux. Disponible en France et à l'étranger.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section class="parcours" id="parcours">
+  <div class="container">
+    <p class="section-label">Parcours professionnel</p>
+    <h2 class="section-title">Un itinéraire <em>d'exception</em></h2>
+    <div class="divider"></div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-period">Depuis 2021</div>
+        <div class="highlight-badge">Transmission du savoir</div>
+        <div class="timeline-role">Formateur en cuisine</div>
+        <div class="timeline-org">Jeunes &amp; adultes en reconversion — France</div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Formation aux techniques culinaires et aux valeurs du métier</li>
+            <li>Création d'ateliers pratiques et accompagnement individualisé</li>
+            <li>Certification de formateur obtenue en 2021</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">2005 — 2020</div>
+        <div class="highlight-badge">15 ans d'entrepreneuriat</div>
+        <div class="timeline-role">Propriétaire &amp; Chef — Restaurant, Boulangerie &amp; Pâtisserie</div>
+        <div class="timeline-org">Irlande</div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Création et gestion complète d'un restaurant réputé et d'une boulangerie-pâtisserie artisanale</li>
+            <li>Organisation de prestations : repas privés, mariages, cours de cuisine</li>
+            <li>Gestion du personnel et développement de l'activité sur 15 ans</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">1997 — 2005</div>
+        <div class="highlight-badge">Chef personnel d'aristocratie anglaise</div>
+        <div class="timeline-role">Chef privé</div>
+        <div class="timeline-org">Famille anglaise — Lord [confidentiel] — Angleterre · Irlande · France · Caraïbes · États-Unis</div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Chef personnel itinérant sur cinq pays et deux continents</li>
+            <li>Repas quotidiens et événements privés de prestige</li>
+            <li>Gestion des approvisionnements internationaux et adaptation aux cuisines locales</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">1993 — 1997 (en parallèle)</div>
+        <div class="highlight-badge">Consulting international</div>
+        <div class="timeline-role">Consultant culinaire &amp; Chef privé international</div>
+        <div class="timeline-org">France · Russie · États-Unis</div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Missions à Moscou, Saint-Pétersbourg et New York</li>
+            <li>Chef privé pour personnalités diverses</li>
+            <li>Organisation de repas d'exception et d'événements sur mesure</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">1990 — 1997</div>
+        <div class="timeline-role">Chef &amp; Copropriétaire — Restaurant Le Rouge Vif</div>
+        <div class="timeline-org">France</div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Ouverture et gestion d'un restaurant bistronomique reconnu</li>
+            <li>Création de la carte, supervision du service</li>
+            <li>Fort succès commercial et notoriété locale</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">1993 — 1996</div>
+        <div class="highlight-badge">Grande maison parisienne</div>
+        <div class="timeline-role">Second de cuisine — L'Avenue</div>
+        <div class="timeline-org">Groupe LVMH — Paris</div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Coordination de la brigade et supervision de la production</li>
+            <li>Repas extérieurs pour les événements du groupe : Céline, Roland Garros, Christian Dior, Louis Vuitton</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">1988 — 1993</div>
+        <div class="highlight-badge">Formation d'excellence</div>
+        <div class="timeline-role">Chef de partie — Joël Robuchon</div>
+        <div class="timeline-org">Paris</div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Formation en haute gastronomie française auprès du chef le plus étoilé au monde</li>
+            <li>Participation à la création de plats emblématiques</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="galerie" id="galerie">
+  <div class="container">
+    <p class="section-label">Créations culinaires</p>
+    <h2 class="section-title">L'art dans <em>l'assiette</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div style="max-width:1100px; margin:0 auto; padding: 0 2rem;">
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="images/plat1.jpg" alt="Poisson &amp; fruits de mer">
+        <div class="gallery-label">Poissons &amp; fruits de mer</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/plat2.jpg" alt="Risotto &amp; légumes">
+        <div class="gallery-label">Cuisine du marché</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/plat3.jpg" alt="Viandes &amp; rôtis">
+        <div class="gallery-label">Viandes &amp; rôtis</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/plat4.jpg" alt="Salade gastronomique">
+        <div class="gallery-label">Entrées &amp; créations</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/buffet.jpg" alt="Buffet &amp; réceptions">
+        <div class="gallery-label">Réceptions &amp; événements</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/portrait.jpg" alt="Chef Arnaud Mary en action">
+        <div class="gallery-label">Le chef au travail</div>
+      </div>
+    </div>
+    <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:1rem;">
+      ✦ Galerie illustrative — photos personnelles à intégrer
+    </p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <p class="section-label">Mes prestations</p>
+    <h2 class="section-title">Ce que je peux <em>faire pour vous</em></h2>
+    <div class="divider"></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-name">Chef privé sur mesure</div>
+        <p class="service-desc">Prestations personnalisées pour particuliers exigeants, familles, personnalités. Repas quotidiens ou occasions exceptionnelles. Discrétion et fiabilité absolues. Disponible en France et à l'international.</p>
+        <div class="service-tags">
+          <span class="tag">Repas privés</span>
+          <span class="tag">Résidences</span>
+          <span class="tag">International</span>
+          <span class="tag">Sur mesure</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-name">Consulting culinaire</div>
+        <p class="service-desc">Accompagnement d'ouvertures de restaurants, création ou refonte de cartes, élaboration de fiches techniques, gestion des coûts et approvisionnements. Fort de 30 ans d'expérience entrepreneuriale.</p>
+        <div class="service-tags">
+          <span class="tag">Ouverture resto</span>
+          <span class="tag">Création de carte</span>
+          <span class="tag">Fiches techniques</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-name">Événementiel &amp; réceptions</div>
+        <p class="service-desc">Organisation complète de dîners de prestige, cocktails, mariages, événements d'entreprise. Gestion de la brigade, coordination logistique, approvisionnements de qualité.</p>
+        <div class="service-tags">
+          <span class="tag">Mariages</span>
+          <span class="tag">Corporate</span>
+          <span class="tag">Dîners de gala</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-name">Formation &amp; ateliers</div>
+        <p class="service-desc">Transmission des techniques culinaires à des particuliers, groupes ou professionnels en reconversion. Formateur certifié, pédagogie adaptée à chaque niveau et chaque objectif.</p>
+        <div class="service-tags">
+          <span class="tag">Cours particuliers</span>
+          <span class="tag">Ateliers groupes</span>
+          <span class="tag">Pros en reconversion</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFOS PRATIQUES -->
+<section class="infos" id="infos">
+  <div class="container">
+    <p class="section-label">Informations pratiques</p>
+    <h2 class="section-title">Langues, disponibilité <em>&amp; style de vie</em></h2>
+    <div class="divider"></div>
+    <div class="infos-grid">
+      <div class="info-box">
+        <div class="info-box-title">Langues</div>
+        <div class="lang-item">
+          <span class="lang-name">Français</span>
+          <span class="lang-level">Langue maternelle</span>
+        </div>
+        <div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div>
+        <div class="lang-item">
+          <span class="lang-name">Anglais</span>
+          <span class="lang-level">Courant</span>
+        </div>
+        <div class="lang-bar"><div class="lang-bar-fill" style="width:85%"></div></div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">Disponibilité</div>
+        <div class="dispo-badge">● Disponible</div>
+        <p class="dispo-text">Missions ponctuelles ou de longue durée, consulting culinaire, prestations de chef privé — en France et à l'international.<br><br>Mobile, flexible, adaptable à chaque projet.</p>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">Style de vie &amp; valeurs</div>
+        <div class="interest-item">
+          <div class="interest-dot"></div>
+          Pratique du Muay Thaï et du triathlon
+        </div>
+        <div class="interest-item">
+          <div class="interest-dot"></div>
+          Discipline, endurance, équilibre
+        </div>
+        <div class="interest-item">
+          <div class="interest-dot"></div>
+          Non-fumeur depuis toujours
+        </div>
+        <div class="interest-item">
+          <div class="interest-dot"></div>
+          Discrétion et fiabilité absolues
+        </div>
+        <div class="interest-item">
+          <div class="interest-dot"></div>
+          Rigueur et sens du détail
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <p class="section-label">Prendre contact</p>
+    <h2 class="section-title">Parlons de <em>votre projet</em></h2>
+    <div class="divider"></div>
+    <p style="color:var(--text-muted); max-width:480px; margin:0 auto 2.5rem; font-size:0.95rem; font-weight:300; line-height:1.9;">
+      Disponible pour toute mission de chef privé, consulting culinaire ou formation en France et à l'international.
+    </p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-label">Téléphone</span>
+        <span class="contact-value"><a href="tel:+33667408199">06 67 40 81 99</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <span class="contact-value"><a href="mailto:arnaud.mary@live.fr">arnaud.mary@live.fr</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Localisation</span>
+        <span class="contact-value">Cholet, France (49300)</span>
+      </div>
+    </div>
+    <a href="mailto:arnaud.mary@live.fr" class="contact-cta">Envoyer un message →</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Arnaud Mary — Chef privé &amp; consultant culinaire international</p>
+</footer>
+
+</body>
+</html>
